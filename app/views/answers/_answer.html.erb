@@ -1,4 +1,3 @@
-<%= link_to answer.body, edit_answer_path(answer) %>
-
+<%= link_to answer.body, edit_answer_path(answer) %>(<%= correct_help(answer) %>)
 <%= link_to 'Destroy', answer, confirm: 'Are you sure?', method: :delete %><br />
 <br />
