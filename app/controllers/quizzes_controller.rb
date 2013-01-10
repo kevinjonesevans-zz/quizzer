@@ -13,7 +13,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.find(params[:id])    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -79,11 +79,5 @@ class QuizzesController < ApplicationController
       format.html { redirect_to quizzes_url }
       format.json { head :no_content }
     end
-  end
-  
-  private
-    def link_question(question)
-      question.quiz_id=@quiz.id
-      question.save
-    end
+  end  
 end

@@ -1,0 +1,11 @@
+<%= link_to question.body, edit_question_path(question) %>
+
+<p>
+  <b>Quiz: </b>
+  <%= Quiz.find(question.quiz_id).title %>
+</p>
+<%= link_to 'Answers For This Question', answers_path %> |
+<%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %><br />
+<br />
+<br />
+<br />

@@ -1,23 +1,6 @@
-<h1>Listing questions</h1>
+<h1>Listing Questions</h1>
 
-<table>
-  <tr>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @questions.each do |question| %>
-  <tr>
-    <td><%= question.body %></td>
-    <td><%= link_to 'Show', question %></td>
-    <td><%= link_to 'Edit', edit_question_path(question) %></td>
-    <td><%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %></td>    
-    <td><%= collection_select(:question, :quiz_id, Quiz.all, :id, :title) %></td>
-  </tr>
-<% end %>
-</table>
+<%= render @questions %>
 
 <br />
 
