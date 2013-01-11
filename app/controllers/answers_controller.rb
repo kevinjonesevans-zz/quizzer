@@ -56,8 +56,8 @@ class AnswersController < ApplicationController
   # PUT /answers/1
   # PUT /answers/1.json
   def update
-    @answer = Answer.find(params[:id])
-
+    @answer = Answer.find(params[:id])    
+    
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
