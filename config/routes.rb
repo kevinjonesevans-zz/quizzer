@@ -2,8 +2,9 @@ Quizzer::Application.routes.draw do
   root to: 'quizzes#index'
   
   resources :quizzes
-  resources :questions
-  resources :answers   
+  resources :questions do
+    resources :answers   
+  end
   
  
 

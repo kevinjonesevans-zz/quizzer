@@ -1,8 +1,9 @@
 class AnswersController < ApplicationController
-  # GET /answers
-  # GET /answers.json
+  # GET /questions/:question_id/answers
+  # GET /questions/:question_id/answers.json
   def index
-    @answers = Answer.all
+    @question = Question.find(params[:question_id])
+    @answers = Answer.where("question_id = ?", @question.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,9 +11,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  # GET /answers/1
-  # GET /answers/1.json
+  # GET /questions/:question_id/answers/1
+  # GET /questions/:question_id/answers/1.json
   def show
+    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
 
     respond_to do |format|
@@ -21,9 +23,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  # GET /answers/new
-  # GET /answers/new.json
+  # GET /questions/:question_id/answers/new
+  # GET /questions/:question_id/answers/new.json
   def new
+    @question = Question.find(params[:question_id])
     @answer = Answer.new
 
     respond_to do |format|
@@ -32,19 +35,21 @@ class AnswersController < ApplicationController
     end
   end
 
-  # GET /answers/1/edit
+  # GET /questions/:question_id/answers/:id/edit
   def edit
+    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
   end
 
-  # POST /answers
-  # POST /answers.json
+  # POST /questions/:question_id/answers
+  # POST /questions/:question_id/answers.json
   def create
+    @question = Question.find(params[:question_id])
     @answer = Answer.new(params[:answer])
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+        format.html { redirect_to question_answer_path(@question,@answer), notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
       else
         format.html { render action: "new" }
@@ -53,9 +58,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  # PUT /answers/1
-  # PUT /answers/1.json
+  # PUT /questions/:question_id/answers/1
+  # PUT /questions/:question_id/answers/1.json
   def update
+    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])    
     
     respond_to do |format|
@@ -69,9 +75,10 @@ class AnswersController < ApplicationController
     end
   end
 
-  # DELETE /answers/1
-  # DELETE /answers/1.json
+  # DELETE /questions/:question_id/answers/1
+  # DELETE /questions/:question_id/answers/1.json
   def destroy
+    @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
     @answer.destroy
 

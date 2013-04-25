@@ -2,7 +2,11 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    if(params[:quiz_id])
+      @questions = Question.where('quiz_id = ?', params[:quiz_id])
+    else
+      @questions = Question.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
