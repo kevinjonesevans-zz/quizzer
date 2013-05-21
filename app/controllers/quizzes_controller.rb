@@ -13,7 +13,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
-    @quiz = Quiz.find(params[:id])    
+    @quiz = Quiz.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +44,7 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
+        format.html { redirect_to quizzes_url, notice: 'Quiz was successfully created.' } #redirect show quizzes
         format.json { render json: @quiz, status: :created, location: @quiz }
       else
         format.html { render action: "new" }
@@ -78,6 +78,7 @@ class QuizzesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to quizzes_url }
       format.json { head :no_content }
+      format.js
     end
-  end  
+  end
 end

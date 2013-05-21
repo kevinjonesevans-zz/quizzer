@@ -1,22 +1,17 @@
-<%= link_to quiz.title, edit_quiz_path(quiz) %>
-
-<p>
+<div id="<%= quiz.title%>">
+  <%= link_to quiz.title, edit_quiz_path(quiz) %>
   <b>Category:</b>
   <%= quiz.category %>
-</p>
 
-<p>
   <b>Author:</b>
   <%= quiz.author %>
-</p>
 
-<p>
   <b>Total Questions:</b>
   <%= Question.where("quiz_id = ?", quiz.id).size %>
-</p>
 
-<%= link_to 'Questions For This Quiz', questions_path %> |
-<%= link_to 'Destroy', quiz, confirm: 'Are you sure?', method: :delete %>
+  <%= link_to 'Questions For This Quiz', questions_path(:quiz_id=> quiz.id) %> |
+  <%= link_to 'Destroy', quiz, confirm: 'Are you sure?', method: :delete, remote: true %>
+</div>
 <br />
 <br />
 <br />

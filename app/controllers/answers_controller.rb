@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  before_filter :getQandA, except: [:create, :new, :index]
+
   # GET /questions/:question_id/answers
   # GET /questions/:question_id/answers.json
   def index
@@ -14,9 +16,6 @@ class AnswersController < ApplicationController
   # GET /questions/:question_id/answers/1
   # GET /questions/:question_id/answers/1.json
   def show
-    @question = Question.find(params[:question_id])
-    @answer = Answer.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @answer }
@@ -49,7 +48,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to question_answer_path(@question,@answer), notice: 'Answer was successfully created.' }
+        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
       else
         format.html { render action: "new" }
@@ -61,9 +60,6 @@ class AnswersController < ApplicationController
   # PUT /questions/:question_id/answers/1
   # PUT /questions/:question_id/answers/1.json
   def update
-    @question = Question.find(params[:question_id])
-    @answer = Answer.find(params[:id])    
-    
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
@@ -78,8 +74,6 @@ class AnswersController < ApplicationController
   # DELETE /questions/:question_id/answers/1
   # DELETE /questions/:question_id/answers/1.json
   def destroy
-    @question = Question.find(params[:question_id])
-    @answer = Answer.find(params[:id])
     @answer.destroy
 
     respond_to do |format|
@@ -87,4 +81,10 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def getQandA
+      @question = Question.find(params[:question_id])
+      @answer = Answer.find(params[:id])
+    end
 end
