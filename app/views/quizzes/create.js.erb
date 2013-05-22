@@ -1,0 +1,3 @@
+$('div#quizzes').append("<%= escape_javascript(render @quiz) %>");
+$('div#quizzes > div#<%= dom_id(@quiz) %>').effect("highlight");
+$('form#<%= dom_id(Quiz.new) %> div.field > input').val("");

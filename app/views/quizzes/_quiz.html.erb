@@ -1,4 +1,4 @@
-<div id="<%= quiz.title%>">
+<div id="<%= dom_id(quiz)%>">
   <%= link_to quiz.title, edit_quiz_path(quiz) %>
   <b>Category:</b>
   <%= quiz.category %>
@@ -12,6 +12,3 @@
   <%= link_to 'Questions For This Quiz', questions_path(:quiz_id=> quiz.id) %> |
   <%= link_to 'Destroy', quiz, confirm: 'Are you sure?', method: :delete, remote: true %>
 </div>
-<br />
-<br />
-<br />

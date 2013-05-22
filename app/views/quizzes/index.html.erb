@@ -1,7 +1,7 @@
-<h1>Listing Quizzes</h1>
-
-<%= render @quizzes %>
+<h1>Quizzes</h1>
+<div id="quizzes">
+  <%= render @quizzes %>
+</div>
 
 <br />
-
-<%= link_to 'New Quiz', new_quiz_path %>
+<%= render "form" %>

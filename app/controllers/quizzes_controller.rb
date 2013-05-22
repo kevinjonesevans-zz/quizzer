@@ -50,6 +50,7 @@ class QuizzesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -76,9 +77,9 @@ class QuizzesController < ApplicationController
     @quiz.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to quizzes_url }
       format.json { head :no_content }
-      format.js
     end
   end
 end
